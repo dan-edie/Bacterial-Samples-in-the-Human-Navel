@@ -42,7 +42,27 @@ function buildTable(sampleID) {
 
         Object.entries(demographicInfo).forEach(([key, value]) => {
             demographicPanel.append("h5").text(`${key}:${value}`);
-        })
+        });
+
+        var washFrequency = demographicInfo.wfreq;
+
+        var gaugePlot = [
+            {
+                domain: { x: [0, 1], y: [0, 1] },
+                value: washFrequency,
+                title: { text: "Navel Wash Frequency", font: {size: 18} },
+                type: "indicator",
+                mode: "gauge",
+                gauge: {
+                    axis: { range: [0, 9] },
+                    bar: {color: "purple"}
+                }
+            }
+        ];
+        
+        var gaugeLayout = { width: 600, height: 500};
+
+        Plotly.newPlot('gauge', gaugePlot, gaugeLayout);
 
     })
 };
@@ -94,7 +114,7 @@ function buildCharts(sampleID) {
         var bubblePlotLayout = {
             title: "OTU Samples per Subject",
             xaxis: {title: "OTU ID"},
-            yaxis: {title: "Number of OTU Found"}
+            yaxis: {title: "Number of OTU Found", autorange: true}
         };
 
         // plotting the charts

@@ -1,4 +1,4 @@
-dataLoc = "/data/samples.json";
+dataLoc = "samples.json";
 
 function getMetaData() {
     // import data using d3
